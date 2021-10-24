@@ -3,10 +3,10 @@ import classes from './styles.module.css';
 
 import { Header } from './components';
 
-const App = ({ options }) => (
+const App = () => (
     <div className={classes?.container}>
         <div className={classes?.headerContainer}>
-            <Header options={options} />
+            <Header />
         </div>
         <div className={classes?.contentContainer}></div>
     </div>

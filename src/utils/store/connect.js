@@ -1,18 +1,18 @@
 import React from 'react';
-import useStore from './useStore';
+import { useStoreContext } from './context';
 
-const connect = (mapStateToProps, mapDispatchToProps) => (Component) => (
-    props
-) => {
-    const MemoizedComponent = React.memo(Component);
+const connect =
+    (mapStateToProps, mapDispatchToProps) => (Component) => (props) => {
+        const MemoizedComponent = React.memo(Component);
 
-    const StoreContext = props?.options?.StoreContext;
-    const { state, dispatch } = useStore(StoreContext);
+        const { state, dispatch } = useStoreContext();
 
-    const modelProps = mapStateToProps(state);
-    const modelActions = mapDispatchToProps(dispatch);
+        const modelProps = mapStateToProps(state);
+        const modelActions = mapDispatchToProps(dispatch);
 
-    return <MemoizedComponent {...modelProps} {...modelActions} {...props} />;
-};
+        return (
+            <MemoizedComponent {...modelProps} {...modelActions} {...props} />
+        );
+    };
 
 export default connect;

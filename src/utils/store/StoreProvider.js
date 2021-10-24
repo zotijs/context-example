@@ -1,14 +1,13 @@
 import React, { useReducer } from 'react';
+import { StoreProvider } from './context';
 
-const StoreProvider = ({ children, options }) => {
-    const { reducer, initialState, StoreContext } = options;
+const Provider = ({ children, options }) => {
+    const { reducer, initialState } = options;
     const [state, dispatch] = useReducer(reducer, initialState);
 
     return (
-        <StoreContext.Provider value={{ state, dispatch }}>
-            {children}
-        </StoreContext.Provider>
+        <StoreProvider value={{ state, dispatch }}>{children}</StoreProvider>
     );
 };
 
-export default StoreProvider;
+export default Provider;
