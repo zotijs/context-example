@@ -3,15 +3,17 @@ import ReactDOM from 'react-dom';
 import { App } from 'components';
 import reportWebVitals from './reportWebVitals';
 
-import { StoreProvider, combineReducers } from 'utils';
+import { StoreProvider, combineReducers, createStore } from 'utils';
 import { reducer as header } from 'models/header';
 
 const initialState = { header: { checked: false } };
 
 const rootReducer = combineReducers({ header });
 
+const store = createStore(rootReducer, initialState);
+
 ReactDOM.render(
-    <StoreProvider options={{ reducer: rootReducer, initialState }}>
+    <StoreProvider value={{ store }}>
         <App />
     </StoreProvider>,
     document.getElementById('root')

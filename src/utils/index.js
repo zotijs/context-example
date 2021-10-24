@@ -1,5 +1,6 @@
 import compose from './compose';
 import {
+    createStore,
     actionCreator,
     combineReducers,
     separatePropCreators,
@@ -9,6 +10,7 @@ import {
 
 export {
     compose,
+    createStore,
     actionCreator,
     combineReducers,
     separatePropCreators,
