@@ -4,6 +4,7 @@ import separatePropCreators from './separatePropCreators';
 import createActionProps from './createActionProps';
 import createProps from './createProps';
 import createStore from './createStore';
+import applyMiddleware from './applyMiddleware';
 import withModelProps from './withModelProps';
 import { StoreProvider } from './context';
 
@@ -14,6 +15,7 @@ export {
     createActionProps,
     createProps,
     createStore,
+    applyMiddleware,
     withModelProps,
     StoreProvider,
 };

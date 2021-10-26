@@ -1,19 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
+import isEqual from 'lodash/isEqual';
 import { useStoreContext } from './context';
 
+// TODO: find a better solution for re-renders
 const connect =
     (mapStateToProps, mapDispatchToProps) => (Component) => (props) => {
         const MemoizedComponent = React.memo(Component);
 
-        const {
-            store: { getState, dispatch },
-        } = useStoreContext();
-        console.log('from connect', getState());
-        const modelProps = mapStateToProps(getState());
+        const [state, setState] = useState({});
+
+        const { dispatch, subscribe } = useStoreContext();
+
+        subscribe(
+            (newState) => !isEqual(state, newState) && setState(newState)
+        );
+
+        const modelProps = mapStateToProps(state);
         const modelActions = mapDispatchToProps(dispatch);
 
         return (
-            <MemoizedComponent {...modelProps} {...modelActions} {...props} />
+            <MemoizedComponent
+                {...modelProps}
+                {...modelActions}
+                {...props}
+                state={state}
+            />
         );
     };
 

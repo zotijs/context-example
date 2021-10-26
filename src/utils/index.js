@@ -5,6 +5,7 @@ import {
     combineReducers,
     separatePropCreators,
     withModelProps,
+    applyMiddleware,
     StoreProvider,
 } from './store';
 
@@ -15,5 +16,6 @@ export {
     combineReducers,
     separatePropCreators,
     withModelProps,
+    applyMiddleware,
     StoreProvider,
 };
