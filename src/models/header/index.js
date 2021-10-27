@@ -1,5 +1,6 @@
 import reducer from './reducer';
-import { toggleMode } from './actions';
-import { checked } from './selectors';
+import epics from './epics';
+import { toggleMode, setCounter } from './actions';
+import { checked, counter } from './selectors';
 
-export { reducer, toggleMode, checked };
+export { reducer, epics, toggleMode, setCounter, checked, counter };

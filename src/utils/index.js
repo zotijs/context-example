@@ -8,6 +8,7 @@ import {
     applyMiddleware,
     StoreProvider,
 } from './store';
+import rootEpic from './rootEpic';
 
 export {
     compose,
@@ -18,4 +19,5 @@ export {
     withModelProps,
     applyMiddleware,
     StoreProvider,
+    rootEpic,
 };

@@ -11,7 +11,7 @@ const applyMiddleware =
         } = createStore(reducer, preloadedState);
 
         const enhancedDispatch = (action) => storeDispatch(action);
-
+        debugger;
         const middlewares = enhancers.map((middleware) =>
             middleware({ getState, dispatch: enhancedDispatch })
         );

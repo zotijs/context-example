@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { createEpicMiddleware } from 'redux-observable';
 import { App } from 'components';
 import reportWebVitals from './reportWebVitals';
 
@@ -8,17 +9,32 @@ import {
     combineReducers,
     createStore,
     applyMiddleware,
-} from 'utils/store';
+    rootEpic,
+    compose,
+} from 'utils';
 
 import { logger } from 'utils/middlewares';
 
-import { reducer as header } from 'models/header';
+import { reducer as header, epics as headerEpic } from 'models/header';
 
+// TODO: move store creation to a configStore.js file
 const initialState = { header: { checked: false } };
 
 const rootReducer = combineReducers({ header });
 
-const store = createStore(rootReducer, initialState, applyMiddleware(logger));
+const epics = rootEpic(headerEpic);
+
+const epicMiddleware = createEpicMiddleware();
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const store = createStore(
+    rootReducer,
+    initialState,
+    composeEnhancers(applyMiddleware(logger, epicMiddleware))
+);
+
+epicMiddleware.run(epics);
 
 ReactDOM.render(
     <StoreProvider value={store}>
